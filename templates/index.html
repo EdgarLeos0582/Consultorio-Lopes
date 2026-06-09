@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+	<title>Consultorio Lopes</title>
+<style>
+header {
+	background-color:rgb(9, 35, 59);
+	padding: 30px;
+	text-align: Center;
+	font-size: 35px;
+	color: rgb(255, 255, 255)
+}
+section {
+	display: -webkit-flex;
+	display: flex;
+}
+nav {
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	background: rgb(36, 132, 223);
+	padding: 20px;
+}
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+article {
+	-webkit-flex: 3;
+	-ms-flex: 3;
+	flex:3;
+	background-color: rgb(255, 255, 255);
+	padding: 10px;
+}
+footer {
+	background-color: rgb(9, 35, 59);
+	padding: 10px;
+	text-align: center;
+	color:rgb(255, 255, 255);
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+footer p {
+    margin: 0;
+    text-align: left;
+    font-size: 14px;
+}
+</style> </head>
+<body>
+
+<header>
+	<img src="{{ url_for('static', filename="logolopes2.png")}}" alt="Logo" style="width: 170px;">
+	<h2>Consultorio Lopes</h2>
+</header>
+
+
+	<div class="main-container">
+  <nav>
+    <ul>
+      <li><a href="/pacientes">Pacientes</a></li>
+      <li><a href="/doctores">Doctores</a></li>
+    </ul>
+  </nav>
+
+<section>
+	<article>
+    	<h2>Informacion del Consultorio</h2>
+    	<p style="font-size: 24px;">Nuestro Consultorio se especializa principalmente en la medicina general pero tambien contamos con doctores especializados en distintos campo de la medicina unos ejemplos serian la oncologia, pediatria, la Dermatologia, Cardiologia y algunas otras mas.</p>
+		<img src="{{ url_for('static', filename="consultorioimagen.png")}}" alt="imagen del consultorio" width= "750">
+	</article>
+</section>
+
+<footer>
+	<img src="{{ url_for('static', filename="logolopes2.png")}}" alt="Logo" style="width: 100px;">
+    <p>Edgar Enrique Leos Chavez, No. Control:24308051280582, 4-I, Programacion. Submodulo 2 Implementa Bases de Datos No Relacionales en un Sistema de Informacion</p>
+</footer>
+</body>
+</html>

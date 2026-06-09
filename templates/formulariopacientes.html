@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Jua:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>{% if p %}Editar Paciente{% else %}Alta de Pacientes{% endif %}</title>
+</head>
+<body>
+
+<header>
+    <h1>{% if p %}Editar Paciente{% else %}Alta de Pacientes - Consultorio Lopes{% endif %}</h1>
+    <img src="{{ url_for('static', filename='logolopes2.png') }}" alt="Logo" width="200">
+    <p>{% if p %}Modifique los datos necesarios para actualizar el registro{% else %}Rellene los datos solicitados para darle de alta en el sistema{% endif %}</p>
+</header>
+
+<main>
+    <div class="form-container">
+        <form action="{{ url_for('pacientes.guardar') }}" method="POST">
+            
+            {% if p %}
+                <input type="hidden" name="id_paciente" value="{{ p.id_paciente }}">
+            {% endif %}
+
+            <div class="form-group">
+                <label>Edad:</label>
+                <input type="number" name="edad" value="{{ p.edad if p else '' }}" required>
+            </div>
+           
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" placeholder="Ej: Pedro" value="{{ p.nombre if p else '' }}" required>
+            </div>
+           
+            <div class="form-group">
+                <label>Apellido Paterno:</label>
+                <input type="text" name="apellido_paterno" placeholder="Ej: Sola" value="{{ p.apellido_paterno if p else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Apellido Materno:</label>
+                <input type="text" name="apellido_materno" placeholder="Ej: perez" value="{{ p.apellido_materno if p else '' }}" required>
+            </div>
+       
+            <div class="form-group">
+                <label>Tipo de Sangre:</label>
+                <input type="text" name="tipo_sangre" placeholder="Ej: O-" value="{{ p.tipo_sangre if p else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Alergias:</label>
+                <input type="text" name="alergias" placeholder="Ej: Penicilina" value="{{ p.alergias if p else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Genero:</label>
+                <input type="text" name="genero" value="{{ p.genero if p else '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Telefono:</label>
+                <input type="number" name="telefono" value="{{ p.telefono if p else '' }}" required>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                {% if p %}Guardar Cambios{% else %}Dar de alta al Paciente{% endif %}
+            </button>
+        </form>
+    </div>
+
+    <a href="/pacientes" class="btn-back">Volver a la Lista</a>
+    <a href="/" class="btn-back"> Volver al Inicio</a>
+</main>
+
+<footer>
+    <p>Leos Chavez Edgar Enrique - Programación</p>
+    <p>24308051280582 - 4-I</p>
+</footer>
+
+</body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        background-color: rgb(9, 35, 59);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: rgb(9, 35, 59);
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        color: rgb(255, 255, 255);
+    }
+
+    h1 {
+        color: rgb(255, 255, 255);
+        font-family: 'Jua', sans-serif;
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 20px;
+        flex: 1;
+    }
+
+    .form-container {
+        max-width: 500px;
+        width: 100%;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(245, 228, 242, 0.7);
+        border-top: 6px solid rgb(18, 92, 161);
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+   
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+    }
+   
+    input[type="text"], input[type="number"], input[type="date"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid rgb(179, 170, 255);
+        border-radius: 6px;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        background-color: rgb(255, 255, 255);
+        color: rgb(39, 39, 39);
+        transition: all 0.3s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: rgb(9, 35, 59);
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 5px rgba(49, 52, 196, 0.4);
+    }
+
+    .btn-submit {
+        background-color: rgb(9, 35, 59);
+        color: white;
+        border: none;
+        padding: 14px 15px;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: "Poppins", sans-serif;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background-color: rgb(9, 35, 59);
+    }
+
+    .btn-back {
+        display: inline-block;
+        text-align: center;
+        margin-top: 25px;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .btn-back:hover {
+        color: rgb(9, 35, 59);
+    }
+
+    footer {
+        width: 100%;
+        background-color: rgb(23, 59, 88);
+        padding: 15px 0;
+        text-align: center;
+        font-size: 13px;
+        color: rgb(247, 247, 247);
+    }
+
+    footer p {
+        margin: 4px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
+</html>
